@@ -1,0 +1,34 @@
+#!/bin/bash
+# This is a simple bash script that tells the color of known fruit"
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $0 <fruit>" >&2
+    exit 1
+fi
+
+fruit="$1"
+
+case "$fruit" in
+	apple)
+		echo "Red or Green"
+    ;;
+  banana)
+    echo "Yellow"
+    ;;
+  kiwi)
+    echo "Brown"
+    ;;
+  grape)
+    echo "Purple or Green"
+    ;;
+  orange)
+    echo "orange"
+    ;;
+  strawberry)
+    echo "Red"
+    ;;
+  *)
+    echo "DOH! I only know the color of some fruits. Not all!" >&2
+    exit 1
+    ;;
+esac

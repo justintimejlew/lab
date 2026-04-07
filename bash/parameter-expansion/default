@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Use default "User" if name variable is empty or unset
+name=""
+echo "Hello, ${name:-User}"
+echo "$name"
