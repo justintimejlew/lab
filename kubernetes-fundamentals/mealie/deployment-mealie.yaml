@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mealie
+  name: mealie
+  namespace: mealie # Add this line
+spec:
+  replicas: 1       # For self-hosted, 1 is fine
+  selector:
+    matchLabels:
+      app: mealie
+  template:
+    metadata:
+      labels:
+        app: mealie
+    spec:
+      containers:
+        - image: ghcr.io/mealie-recipes/mealie:v1.2.0
+          name: mealie
+          ports:    # Add the port required
+            - containerPort: 9000
