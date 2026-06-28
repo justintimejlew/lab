@@ -20,3 +20,10 @@ spec:
           name: mealie
           ports:    # Add the port required
             - containerPort: 9000
+          volumeMounts:
+            - mountPath: /app/data
+              name: mealie-data
+      volumes:
+        - name: mealie-data
+          persistentVolumeClaim:
+            claimName: mealie-data
