@@ -1,0 +1,13 @@
+persistence:
+#  - name: homarr-config
+#    enabled: false
+
+  - name: homarr-database
+    enabled: true
+    storageClassName: "local-path"
+    accessMode: "ReadWriteOnce"
+    size: 500Mi
+    mountPath: /app/database
+
+#  - name: homarr-icons
+#    enabled: false
