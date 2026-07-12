@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: littlelink
+  name: littlelink
+  namespace: littlelink
+spec:
+  replicas: 1       # For self-hosted, 1 is fine
+  selector:
+    matchLabels:
+      app: littlelink
+  template:
+    metadata:
+      labels:
+        app: littlelink
+    spec:
+      containers:
+        - image: ghcr.io/timothystewart6/littlelink-server:latest
+          name: littlelink-server
+          env:
+            - name: META_TITLE
+              value: "JustinTime"
+            - name: META_DESCRIPTION
+              value: "Linux Engineer | Content Creator on YouTube | Homelabber | 🇺🇸  | Kubecrafter"
+            - name: META_AUTHOR
+              value: "JustinTimeJLew"
+            - name: META_KEYWORDS
+              value: "HomeLab, Linux, Kubernetes, Engineering"
+            - name: LANG
+              value: "en"
+            - name: META_INDEX_STATUS
+              value: "all"
+            - name: OG_SITE_NAME
+              value: "JustinTime"
+            - name: OG_TITLE
+              value: "JustinTime"
+            - name: OG_DESCRIPTION
+              value: "The home of JustinTime"
+            - name: OG_URL
+              value: "https://justintimeblogs.com"
+            - name: OG_IMAGE
+              value: "https://avatars.githubusercontent.com/u/93402379?v=4"
+            - name: OG_IMAGE_WIDTH
+              value: "400"
+            - name: OG_IMAGE_HEIGHT
+              value: "400"
+            - name: GA_TRACKING_ID
+              value: "G-XXXXXXXXXX"
+            - name: THEME
+              value: "Dark"
+            - name: FAVICON_URL
+              value: "https://avatars.githubusercontent.com/u/93402379?v=4"
+            - name: AVATAR_URL
+              value: "https://avatars.githubusercontent.com/u/93402379?v=4"
+            - name: AVATAR_2X_URL
+              value: "https://avatars.githubusercontent.com/u/93402379?v=4"
+            - name: AVATAR_ALT
+              value: "JustinTime Profile Pic"
+            - name: NAME
+              value: "JustinTime"
+            - name: BIO
+              value: "Linux Engineer | Content Creator on YouTube | Homelabber | 🇺🇸  | Kubecrafter"
+            - name: BUTTON_ORDER
+              value: "YOUTUBE,TWITTER,GITHUB,INSTAGRAM,LINKED_IN,DOCUMENTATION"
+            - name: CUSTOM_BUTTON_TEXT
+              value: "Documentation"
+            - name: CUSTOM_BUTTON_URL
+              value: "https://l.technotim.com/docs"
+            - name: CUSTOM_BUTTON_COLOR
+              value: "#000000"
+            - name: CUSTOM_BUTTON_TEXT_COLOR
+              value: "#ffffff"
+            - name: CUSTOM_BUTTON_ALT_TEXT
+              value: "Tech documentation site for my videos and more"
+            - name: CUSTOM_BUTTON_NAME
+              value: "DOCUMENTATION"
+            - name: CUSTOM_BUTTON_ICON
+              value: "fas file-alt"
+            - name: GITHUB
+              value: "https://l.technotim.com/github"
+            - name: TWITTER
+              value: "https://l.technotim.com/twitter"
+            - name: INSTAGRAM
+              value: "https://l.technotim.com/instagram"
+            - name: LINKED_IN
+              value: "https://l.technotim.com/linkedin"
+            - name: YOUTUBE
+              value: "https://l.technotim.com/subscribe"
+            - name: FOOTER
+              value: "JustinTime © 2026"
+          ports:    # Add the port required
+            - containerPort: 3000
+          volumeMounts:
+            - mountPath: /app/data
+              name: ll-data
+      volumes:
+        - name: ll-data
+          persistentVolumeClaim:
+            claimName: ll-data
